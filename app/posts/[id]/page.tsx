@@ -20,7 +20,7 @@ export async function generateMetadata(
   const post = await res.json();
   return {
     title: post.title,
-    description: post.body.slice(0, 160),
+    description: (post.body ?? "").slice(0, 160),
   };
 }
 // ✨ TypeScript: params มีtype { id: string }

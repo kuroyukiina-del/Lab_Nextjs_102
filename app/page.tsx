@@ -1,6 +1,7 @@
 // app/page.tsx
 import Link from "next/link";
 import type { Metadata } from "next";
+import Image from "next/image";
 export const metadata: Metadata = {
   title: "หน้าแรก",
 };
@@ -20,19 +21,48 @@ export default async function Home() {
   const posts: Post[] = await getRecentPosts();
   return (
     <div>
-      <div className="text-center py-16 px-4">
-        <h1 className="text-5xl font-bold text-blue-900 mb-4">สวัสดี! 👋</h1>
-        <p className="text-xl text-gray-600 mb-8">
-          บล็อกของ <strong>[นายศุภกร ยางสมบูรณ์]</strong> • นิสิตปี 3 CS
-        </p>
-        <Link
-          href="/posts"
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg
- hover:bg-blue-700 transition-colors font-medium"
-        >
-          อ่านบทความ →
-        </Link>
-      </div>
+      <main className="relative min-h-screen w-screen overflow-hidden flex items-center justify-center">
+        {/* Background */}
+        <Image
+          src="/image/background.jpg"
+          alt="Background"
+          fill
+          priority
+          className="object-cover"
+        />
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/40"></div>
+
+        {/* Card */}
+        <div className="relative z-10 bg-white/90 p-8 rounded-2xl shadow-lg text-center">
+          <div className="flex justify-center">
+            <div className="w-40 h-40 overflow-hidden rounded-full">
+              <Image
+                src="/image/profile.jpg"
+                alt="Profile"
+                width={160}
+                height={160}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
+          <h1 className="mt-8 text-5xl font-bold text-blue-900">สวัสดี! 👋</h1>
+
+          <p className="mt-4 text-xl text-gray-600">
+            บล็อกของ <strong>นายศุภกร ยางสมบูรณ์</strong> • นิสิตปี 3 CS
+          </p>
+
+          <Link
+            href="/posts"
+            className="inline-block mt-8 px-6 py-3 bg-blue-600 text-white rounded-lg"
+          >
+            อ่านบทความ →
+          </Link>
+        </div>
+      </main>
+
       <div className="mt-8">
         <h2 className="text-2xl font-bold text-blue-900 mb-4">บทความล่าสุด</h2>
         <div className="grid gap-4">
