@@ -44,6 +44,10 @@ export default function RootLayout({
               Courses
             </Link>
 
+             <Link href="/blog-spa" className="hover:text-blue-300">
+              Blog-Spa
+            </Link>
+
           </div>
         </nav>
 
